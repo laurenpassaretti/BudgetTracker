@@ -1,6 +1,6 @@
 let db; 
 
-const request = indexedDB.open("budget", 1); 
+const request = indexedDB.open("budget", 2); 
 
 request.onupgradeneeded = function(event) {
     const db = event.target.result; 
@@ -10,7 +10,7 @@ request.onupgradeneeded = function(event) {
 request.onsuccess = function(event)  {
     db = event.target.result; 
     if (navigator.online){
-        accessDatabase(); 
+        checkDatabase(); 
     }
 }; 
 
@@ -24,10 +24,10 @@ function saveRecord(record) {
     store.add(record); 
 }; 
 
-function accessDatabase() {
+function checkDatabase() {
     const transaction = db.transaction(["pending"], "readWrite"); 
-    const store = transaction.objectStore("pending"); 
-    const getAll = store.getAll(); 
+    const transactions = transaction.objectStore("pending"); 
+    const getAll = transactions.getAll(); 
     
     getAll.onsuccess = function(){
         if (getAll.result.length > 0){
@@ -42,12 +42,12 @@ function accessDatabase() {
             .then(response => response.json())
             .then(() => {
                 const transaction = db.transaction(["pending"], "readWrite")
-                const store = transaction.objectStore("pending"); 
+                const transactions = transaction.objectStore("pending"); 
 
-                store.clear(); 
+                transactions.clear(); 
             })
         }
     }; 
 }
 
-window.addEventListener("online", accessDatabase); 
+window.addEventListener("online", checkDatabase); 

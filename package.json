@@ -1,6 +1,9 @@
 {
   "name": "budget-app",
   "version": "1.0.0",
+  "engines": {
+    "node": "v13.10.1"
+  },
   "description": "",
   "main": "server.js",
   "scripts": {

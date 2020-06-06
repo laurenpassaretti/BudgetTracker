@@ -1,7 +1,10 @@
+require('dotenv').config()
+
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
+
 
 const PORT = 3000;
 
@@ -15,7 +18,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://laurend2:Mailey2020@ds255787.mlab.com:55787/heroku_gbp6k5mn", {
+mongoose.connect(process.env.DB_MONGO, {
   useNewUrlParser: true,
   useFindAndModify: false
 });

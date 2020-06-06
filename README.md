@@ -19,7 +19,7 @@ with the front end provided, however, I am proud of the functionality I was able
 
 Here is a link to the deployed application: 
 
-https://rocky-atoll-24354.herokuapp.com
+https://immense-journey-14942.herokuapp.com/
 
 
 Here is a link to the GitHub repository: 
